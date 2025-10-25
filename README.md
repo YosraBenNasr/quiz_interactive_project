@@ -6,7 +6,7 @@ Ce projet est une page web interactive de quiz réalisée pour le sujet *Page de
 - `index.html` — page principale
 - `style.css` — styles (responsive, animations)
 - `script.js` — logique du quiz, feedback en temps réel
-- `rapport.md` — compte-rendu du projet (format markdown)
+
 
 ## Fonctionnalités
 - Feedback visuel immédiat (bonne / mauvaise réponse)
