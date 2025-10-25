@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>Quiz Interactif - Projet FIA3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Quiz Interactif: Connaissances Générales</h1>
+    <p class="subtitle">Réponds aux questions — feedback instantané & score final</p>
+  </header>
+
+  <main class="container" id="app">
+    <section id="start-screen" class="card">
+      <h2>Prête ?</h2>
+      <p>Tu vas répondre à <span id="total-questions">0</span> questions.</p>
+      <button id="start-btn" class="btn">Commencer le quiz</button>
+    </section>
+
+    <section id="quiz-screen" class="card hidden" aria-live="polite">
+      <div class="progress">
+        <span id="q-index">0</span> / <span id="q-total">0</span>
+      </div>
+
+      <div id="question-card" class="question-card" role="group" aria-labelledby="question-title">
+        <h3 id="question-title">Question en attente...</h3>
+        <div id="choices" class="choices" role="radiogroup"></div>
+      </div>
+
+      <div class="controls">
+        <button id="next-btn" class="btn" disabled>Suivant</button>
+        <button id="quit-btn" class="btn ghost">Quitter</button>
+      </div>
+    </section>
+
+    <section id="result-screen" class="card hidden" aria-live="polite">
+      <h2>Résultats</h2>
+      <p id="final-score"></p>
+      <div id="result-details" class="result-details"></div>
+      <button id="retry-btn" class="btn">Rejouer</button>
+      <a id="download-report" class="btn ghost" href="#" download="rapport_quiz.txt">Télécharger rapport</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Projet Web — Page de Quiz interactif • FIA3 • 2025/2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
