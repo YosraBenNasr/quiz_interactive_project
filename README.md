@@ -1,28 +1,98 @@
+# 🎯 Projet Web — Page de Quiz Interactif
+
+**Sujet 7 — Quiz Dynamique avec JavaScript**
 
 ---
 
-## ⚙️ Fonctionnalités principales avec extraits de code
+## 📌 Description du Projet
 
-| Fonctionnalité | Description | Extrait de code |
-|----------------|------------|----------------|
-| **Feedback immédiat** | La réponse sélectionnée devient verte ou rouge selon qu’elle est correcte ou non | ```js function selectChoice(btn, index){ const isCorrect = index===q.answer; btn.classList.add(isCorrect ? "correct":"wrong"); } ``` |
-| **Chronomètre par question** | Compte à rebours et pénalité si temps écoulé | ```js function startTimer(){ timeLeft = timePerQuestion; timer = setInterval(()=>{ timeLeft--; if(timeLeft<=0) timeExpired(); },1000); } ``` |
-| **Calcul dynamique du score** | Score mis à jour selon la réponse et le temps restant | ```js state.score += Math.max(0,1-calculatePenalty(timeLeft)); ``` |
-| **Progression visuelle** | Barre de progression et pourcentage | ```js function updateProgress(){ const pct = Math.round((state.current/QUESTIONS.length)*100); refs.progressBar.style.width = pct+"%"; refs.progressLabel.textContent = pct+"%"; } ``` |
-| **Écran de résultats** | Affiche toutes les réponses, le score et les pénalités | ```js function showResults(){ refs.finalScore.textContent = `Score : ${state.score.toFixed(2)}`; } ``` |
-| **Téléchargement du rapport** | Export des résultats sous forme de fichier texte | ```js function buildReportText(){ return state.answers.map(a=>`Q:${a.question} Réponse:${a.chosen}`).join("\n"); } ``` |
-| **Meilleurs scores** | Sauvegarde dans localStorage, top 10 | ```js function saveScore(){ let scores = JSON.parse(localStorage.getItem("quiz_scores")||"[]"); scores.push({name:"Anonyme",score:state.score}); localStorage.setItem("quiz_scores",JSON.stringify(scores.slice(0,10))); } ``` |
-| **Responsive et accessible** | Fonctionne sur mobile, tablette, desktop, navigation clavier | ```html <button id="start-btn" class="btn primary" type="button">Commencer le quiz</button> ``` |
-| **Anti-refresh** | Empêche le rechargement ou fermeture accidentelle pendant le quiz | ```js window.addEventListener("beforeunload", e => { if(!refs.quizScreen.classList.contains("hidden")){ e.preventDefault(); e.returnValue=""; } }); ``` |
+Ce projet consiste à développer une page de **Quiz interactif en JavaScript**, permettant à l’utilisateur de répondre à une série de questions avec gestion de **chronomètre**, **feedback immédiat**, **score dynamique** et **historique des meilleurs résultats**.
+
+L’application est **100% dynamique**, sans rechargement de page, et respecte les bonnes pratiques de **structure HTML5**, **accessibilité**, **responsive design**, et **JavaScript vanilla**.
 
 ---
 
-## 🖥️ Exécution
+## 🚀 Fonctionnalités Principales
 
-Ouvrir `index.html` dans un navigateur moderne :
+| Fonctionnalité            | Description                                     |
+| ------------------------- | ----------------------------------------------- |
+| ⏱ Chronomètre             | Décompte individuel pour chaque question        |
+| 🎯 Calcul de score        | Score basé sur exactitude + pénalité temporelle |
+| 💾 Sauvegarde des scores  | Stockage local via `localStorage`               |
+| 🔁 Rejouer                | Reset complet du quiz sans recharger la page    |
+| 🔍 Types de questions     | QCM et Vrai/Faux                                |
+| ⭐ Progression visuelle    | Barre de progression + compteur                 |
+| 📥 Rapport téléchargeable | Génération de fichier `.txt`                    |
+| 🎨 UX interactive         | Feedback immédiat (correct / incorrect)         |
 
-```bash
-# Depuis votre explorateur de fichiers
-double-cliquez sur index.html
-# ou via un serveur local (recommandé)
-live-server
+---
+
+## 🧠 Logique du score & pénalités
+
+* Chaque bonne réponse rapporte **1 point maximum**
+* Une **pénalité temporelle** réduit les points :
+
+```js
+points = 1 - (tempsÉcoulé * 0.05)
+```
+
+* Si le temps est écoulé → **0 point**
+* Score final arrondi à **2 décimales**
+
+---
+
+## 🛠 Technologies & Contraintes
+
+### 🧩 Langages
+
+* HTML5 sémantique
+* CSS3 moderne (flexbox, animations, responsive)
+* JavaScript Vanilla (DOM API, `setInterval`, `localStorage`)
+
+### ⚙ Contraintes techniques
+
+* ❌ Aucun framework ou librairie externe (jQuery, React, Bootstrap…)
+* ❌ Aucun refresh de page
+* ✔ Code séparé : `index.html`, `style.css`, `script.js`
+* ✔ Accessibilité (`aria-*`, roles, labels…)
+* ✔ Interface responsive mobile & desktop
+
+---
+
+## 📂 Structure des fichiers
+
+```
+/quiz_project
+│
+├── index.html       # Structure et interface utilisateur
+├── style.css        # Styles et animations
+└── script.js        # Logique du quiz et fonctionnalités
+```
+
+---
+
+## 📸 Aperçu des écrans
+
+1️⃣ Écran de démarrage
+2️⃣ Interface de question
+3️⃣ Résultats détaillés + statistiques
+4️⃣ Tableau des meilleurs scores
+
+---
+
+## 🔮 Améliorations possibles
+
+* Ajout des **niveaux de difficulté**
+* Banque de questions via API
+* Mode **off-line PWA**
+* Support **clavier + lecteur d’écran (ARIA)** renforcé
+
+---
+
+## 👨‍💻 Auteur
+
+Projet réalisé dans le cadre du module **Développement Web — FIA3 — Année 2025/2026**
+
+---
+
+### 🏁 Merci et bonne exploration du quiz !

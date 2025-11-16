@@ -83,6 +83,12 @@ body {
   font-size: 0.8rem;
   text-align: center;
 }
+#clear-scores {
+  width: 180px; /* largeur fixe */
+  display: block; /* nécessaire pour que margin auto fonctionne */
+  margin: 0 auto; /* centre horizontalement */
+}
+
 
 /* ------------------ CARD ------------------ */
 .card {
@@ -91,7 +97,24 @@ body {
   padding: 18px;
   box-shadow: 0 6px 18px rgba(16, 32, 39, 0.06);
   margin-bottom: 18px;
+  height: 360px; /* Hauteur fixe adaptée à toutes les questions */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* répartit l'espace si nécessaire */
 }
+
+
+.start-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.start-row h2 {
+  margin: 0;
+}
+
 
 /* Style pour la section des meilleurs scores (dans le start-screen) */
 .best-scores {
