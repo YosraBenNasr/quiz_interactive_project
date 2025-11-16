@@ -73,10 +73,16 @@ points = 1 - (tempsÉcoulé * 0.05)
 
 ## 📸 Aperçu des écrans
 
-1️⃣ Écran de démarrage
-2️⃣ Interface de question
-3️⃣ Résultats détaillés + statistiques
-4️⃣ Tableau des meilleurs scores
+1️⃣ Écran de démarrage  
+![Écran de démarrage](images/start-screen.png)
+
+2️⃣ Interface de question  
+![Interface de question](images/question-screen.png)
+
+3️⃣ Résultats détaillés + statistiques  
+![Résultats détaillés](images/result-screen.png)
+
+
 
 ---
 
