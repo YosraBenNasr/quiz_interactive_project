@@ -2,50 +2,102 @@
  ⭐ QUIZ PROJECT — JS CORRIGÉ ⭐
 *******************************/
 
-// ------------------- Questions du Quiz -------------------
-const QUESTIONS = [
+// ------------------- Questions du Quiz - Développement Web -------------------
+// ------------------- Questions du Quiz - Développement Web -------------------
+let QUESTIONS = [
+    // QCM classiques
     {
-        q: "Quelle est la capitale de la Tunisie ?",
-        choices: ["Alger", "Tunis", "Rabat", "Tripoli"],
+        q: "Quelle est la balise HTML utilisée pour un lien hypertexte ?",
+        choices: ["&lt;img&gt;", "&lt;a&gt;", "&lt;div&gt;", "&lt;span&gt;"],
         answer: 1,
-        explanation: "Tunis est la capitale officielle de la République Tunisienne."
+        explanation: "La balise <a> définit un lien hypertexte."
     },
     {
-        q: "Quel langage est principalement utilisé pour le style des pages web ?",
-        choices: ["HTML", "Python", "CSS", "SQL"],
-        answer: 2,
+        q: "Quel langage est utilisé pour styliser les pages web ?",
+        choices: ["HTML", "CSS", "JavaScript", "SQL"],
+        answer: 1,
         explanation: "CSS (Cascading Style Sheets) est utilisé pour le style."
     },
     {
-        q: "Combien de bits dans un octet ?",
-        choices: ["4", "8", "16", "32"],
-        answer: 1,
-        explanation: "Un octet contient 8 bits."
-    },
-    {
-        q: "HTML est un acronyme pour ?",
+        q: "Comment insérer un script JavaScript externe dans HTML ?",
         choices: [
-            "HyperText Markup Language",
-            "Hyperlink Text Makeup Language",
-            "Hyper Tool Markup Language",
-            "HyperText Machine Language"
+            "&lt;script src='file.js'&gt;&lt;/script&gt;",
+            "&lt;js&gt;file.js&lt;/js&gt;",
+            "&lt;script href='file.js'&gt;",
+            "&lt;link src='file.js'&gt;"
         ],
         answer: 0,
-        explanation: "HTML signifie HyperText Markup Language."
+        explanation: "La balise <script src='file.js'></script> inclut un fichier JavaScript externe."
     },
     {
-        q: "Laquelle des balises HTML suivantes s'utilise pour un lien ?",
-        choices: ["<img>", "<a>", "<div>", "<span>"],
-        answer: 1,
-        explanation: "La balise <a> définit un lien."
-    },
-    {
-        q: "Quel est le sélecteur CSS pour cibler un id ?",
-        choices: ["#id", ".id", "*id", "id"],
+        q: "Quel attribut HTML permet de définir une image ?",
+        choices: ["src", "href", "alt", "link"],
         answer: 0,
-        explanation: "Le symbole '#' sélectionne un id en CSS."
+        explanation: "L'attribut 'src' définit la source de l'image."
+    },
+    {
+        q: "Quel symbole est utilisé pour sélectionner une classe en CSS ?",
+        choices: [".", "#", "*", "@"],
+        answer: 0,
+        explanation: "Le symbole '.' sélectionne une classe en CSS."
+    },
+
+    // Vrai/Faux
+    {
+        q: "HTML est un langage de programmation. Vrai ou Faux ?",
+        choices: ["Vrai", "Faux"],
+        answer: 1,
+        explanation: "HTML n'est pas un langage de programmation mais un langage de balisage."
+    },
+    {
+        q: "En CSS, 'display: none' cache un élément. Vrai ou Faux ?",
+        choices: ["Vrai", "Faux"],
+        answer: 0,
+        explanation: "La propriété 'display: none' rend l'élément invisible et le retire du flux du document."
+    },
+    {
+        q: "JavaScript peut être utilisé pour manipuler le DOM. Vrai ou Faux ?",
+        choices: ["Vrai", "Faux"],
+        answer: 0,
+        explanation: "JavaScript permet de modifier dynamiquement le DOM."
+    },
+    {
+        q: "La balise &lt;head&gt; contient le contenu visible de la page. Vrai ou Faux ?",
+        choices: ["Vrai", "Faux"],
+        answer: 1,
+        explanation: "Le contenu visible se trouve dans <body>, le <head> contient les métadonnées."
+    },
+
+   
+
+    // Questions QCM avancées
+    {
+        q: "Quelle méthode JavaScript est utilisée pour ajouter un élément à la fin d'un tableau ?",
+        choices: ["push()", "pop()", "shift()", "unshift()"],
+        answer: 0,
+        explanation: "La méthode push() ajoute un élément à la fin d'un tableau."
+    },
+    {
+        q: "Quelle propriété CSS modifie la couleur du texte ?",
+        choices: ["color", "background-color", "font-size", "text-align"],
+        answer: 0,
+        explanation: "La propriété 'color' change la couleur du texte."
     }
 ];
+
+// ------------------- Mélanger les questions -------------------
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Mélange des questions au début du quiz
+QUESTIONS = shuffle(QUESTIONS);
+
+
 
 
 // ------------------- Variables Globales -------------------
