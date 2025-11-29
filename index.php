@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz Interactif - quiz_project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <h1>Testez vos compétences en Dev Web !</h1>
+        <p class="subtitle">Feedback immédiat • Chrono par question</p>
+    </header>
+
+    <main class="container" id="app">
+
+        <!-- Écran de démarrage -->
+        <section id="start-screen" class="card" aria-labelledby="start-title">
+
+            <!-- Ligne titre + bouton -->
+            <div class="start-row">
+                <h2 id="start-title">Prêt(e) pour le challenge ?</h2>
+                <button id="start-btn" class="btn primary" type="button">Commencer le quiz</button>
+            </div>
+
+            <p>Tu vas répondre à <strong id="total-questions">0</strong> questions.</p>
+
+            <aside class="best-scores card small" aria-live="polite">
+                <h3>🏆 Meilleurs scores</h3>
+                <ol id="best-scores-list"></ol>
+                <button id="clear-scores" class="btn secondary ghost small" type="button">
+                    Effacer les scores
+                </button>
+            </aside>
+        </section>
+
+        <!-- Écran du quiz -->
+        <section id="quiz-screen" class="card hidden" aria-live="polite" aria-labelledby="question-title">
+            <div class="top-row">
+                <p class="progress">
+                    Question <span id="q-index">0</span> / <span id="q-total">0</span>
+                </p>
+                <div class="timer">
+                    <svg class="ring-timer" viewBox="0 0 104 104" width="30" height="30" aria-hidden="true">
+                        <circle class="ring-bg" cx="52" cy="52" r="50" />
+                        <circle class="ring-fg" cx="52" cy="52" r="50" fill="none" stroke-width="4"
+                            stroke="var(--accent)" />
+                    </svg>
+                    <span id="time-display" aria-live="polite">10s</span>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <span class="progress-label" id="progressLabel">0%</span>
+                <div class="progress-bar-outer">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <article id="question-card" class="question-card fade show" role="group" aria-labelledby="question-title">
+                <h3 id="question-title">Question en attente...</h3>
+                <div id="choices" class="choices" role="radiogroup" aria-label="Choix de réponses"></div>
+            </article>
+
+            <div class="controls">
+                <button id="quit-btn" class="btn secondary ghost" type="button">Quitter</button>
+                <button id="next-btn" class="btn primary" type="button" disabled>Suivant</button>
+            </div>
+        </section>
+
+        <!-- Écran des résultats -->
+        <section id="result-screen" class=" hidden" aria-live="polite" aria-labelledby="result-title">
+            <h2 id="result-title">🎉 Résultats</h2>
+            <p id="final-score" class="score-summary"></p>
+            <div id="progress-bar-result" class="progress-bar-result" role="progressbar" aria-valuemin="0"
+                aria-valuemax="100" aria-valuenow="0">
+                <span></span>
+            </div>
+
+            <div id="result-details" class="result-details"></div>
+
+            <div class="controls">
+                <button id="retry-btn" class="btn primary" type="button">Rejouer</button>
+                <button id="save-score" class="btn secondary" type="button">Sauvegarder mon score</button>
+                <a id="download-report" class="btn secondary ghost" href="#" download="rapport_quiz.txt">
+                    Télécharger rapport
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Projet Web — quiz_project • FIA3 • 2025/2026</p>
+    </footer>
+
+     <script src="script.js?v=<?php echo time(); ?>"></script>
+   
+</body>
+
+</html>
