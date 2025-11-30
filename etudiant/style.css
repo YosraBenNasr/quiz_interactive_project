@@ -1,0 +1,530 @@
+:root {
+    /* Couleurs et Thème */
+    --bg: #f6f8fb;
+    --card: #ffffff;
+    --text-primary: #102027;
+    --text-muted: #6c7a89;
+    --primary-color: #4a90e2; /* RENOMMÉ pour clarté dans le CSS */
+    /* Accentuation et États */
+    --accent: var(--primary-color); 
+    --accent-light: #6fb3ff;
+    --success: #2ecc71;
+    --success-light: rgba(46, 204, 113, 0.12);
+    --danger: #e74c3c;
+    --danger-light: rgba(231, 76, 60, 0.12); /* Légèrement ajusté */
+    --border-color: #e6eefc;
+    /* Layout et Géométrie */
+    --radius: 12px;
+    --max-width: 900px;
+    --ring-size: 72px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+/* Réinitialisation */
+*,
+*::before,
+*::after {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+}
+
+/* ------------------ HEADER ------------------ */
+.site-header {
+    width: 100%;
+    /* Utilise la nouvelle variable */
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-light));
+    color: white;
+    padding: 18px 16px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.15);
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 1.4rem
+}
+
+.subtitle {
+    margin-top: 6px;
+    opacity: 0.95;
+    font-size: 0.9rem
+}
+
+/* ------------------ LAYOUT ------------------ */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 20px;
+    margin-top: 22px;
+    flex-grow: 1;
+}
+
+.site-footer {
+    margin-top: auto;
+    padding: 10px 20px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-align: center;
+}
+#clear-scores {
+    width: 180px; 
+    display: block; 
+    margin: 0 auto; 
+}
+
+
+/* ------------------ CARD ------------------ */
+.card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(16, 32, 39, 0.06);
+    margin-bottom: 18px;
+    /* Hauteur fixe (HACK pour éviter le saut de page lors du chargement des questions) */
+    height: auto; 
+    display: flex;
+    flex-direction: column;
+}
+
+
+.start-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.start-row h2 {
+    margin: 0;
+}
+
+/* Style pour la liste des quiz (ajouté pour index.php) */
+.quiz-list-selector {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.quiz-list-selector li {
+    background: #fdfdfd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+.quiz-list-selector .quiz-details strong {
+    font-size: 1.1em;
+    color: var(--text-primary);
+}
+.quiz-list-selector .quiz-details span {
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+.start-quiz-btn {
+    min-width: 120px; /* Aligner les boutons */
+}
+
+
+/* Style pour la section des meilleurs scores (dans le start-screen) */
+.best-scores {
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius);
+}
+
+.best-scores h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.best-scores ol {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 15px 0;
+    text-align: left;
+}
+
+.best-scores li {
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--border-color);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+.best-scores li .name {
+    flex-grow: 1;
+    margin-left: 10px;
+    font-weight: 600;
+}
+.best-scores li .score {
+    font-weight: 700;
+    color: var(--success);
+}
+
+.best-scores li:last-child {
+    border-bottom: none;
+}
+
+
+/* ------------------ QUIZ ELEMENTS ------------------ */
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.progress {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 8px
+}
+
+
+/* Timer Ring (SVG) */
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.ring-timer {
+    transform: rotate(-90deg);
+}
+
+.ring-bg {
+    stroke: var(--border-color);
+    fill: none;
+    stroke-width: 4;
+}
+
+/* 🔥 CRUCIAL POUR L'ANIMATION DU TIMER 🔥 */
+.ring-fg {
+    fill: none;
+    stroke: var(--primary-color); /* Utilise la couleur primaire */
+    stroke-width: 4;
+    stroke-dasharray: 314.16; /* Circonférence pour r=50 */
+    stroke-dashoffset: 0; /* Début à 0 (cercle complet) */
+    transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+}
+
+
+/* Progress Bar (pour l'ensemble du quiz) */
+.progress-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px
+}
+
+.progress-label {
+    min-width: 40px;
+    text-align: right;
+    font-weight: 700;
+    color: var(--accent)
+}
+
+.progress-bar-outer {
+    flex: 1;
+    background: #e8e8e8;
+    border-radius: 50px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00c6ff, var(--primary-color)); /* Utilise la variable accent */
+    transition: width .45s ease-in-out;
+}
+
+/* Question Card */
+.question-card {
+    flex-grow: 1; /* Permet à la carte de prendre l'espace restant dans .card */
+}
+.question-card h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.25rem
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.choice {
+    border-radius: 10px;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: all .2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.choice:hover {
+    background: #f0f5fb;
+    border-color: var(--accent);
+}
+
+.choice:focus {
+    outline: 3px solid rgba(74, 144, 226, 0.3);
+    outline-offset: 2px;
+}
+
+/* États de Réponse */
+.choice.correct {
+    background: var(--success-light);
+    border-color: var(--success);
+    animation: pop .25s ease;
+    color: var(--success);
+    font-weight: 600;
+}
+
+.choice.wrong {
+    background: var(--danger-light);
+    border-color: var(--danger);
+    animation: shake .3s ease;
+    color: var(--danger);
+}
+.choice.chosen {
+    /* Style pour le choix de l'utilisateur qui est CORRECT */
+    background: var(--accent-light);
+    border-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+.choice.chosen.correct {
+    /* Le choix correct doit toujours être vert, même s'il a été 'chosen' */
+    background: var(--success-light);
+    border-color: var(--success);
+    color: var(--success);
+}
+
+
+
+/* ------------------ CONTROLS ------------------ */
+.controls {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.btn {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .2s ease;
+    min-width: 100px;
+}
+
+.btn.primary {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 6px 12px rgba(74, 144, 226, 0.25);
+}
+
+.btn.primary:hover:not([disabled]) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(74, 144, 226, 0.3);
+}
+
+.btn.secondary { /* Style de base secondaire */
+    background: white;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+.btn.secondary:hover:not([disabled]) {
+    background: #f0f5fb;
+}
+
+.btn.secondary.ghost {
+    background: transparent;
+    color: var(--text-muted);
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+}
+
+.btn.secondary.ghost:hover:not([disabled]) {
+    background: var(--border-color);
+}
+
+.btn[disabled] {
+    opacity: .5;
+    cursor: not-allowed
+}
+
+.btn[disabled]:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* ------------------ RESULT SCREEN ------------------ */
+#result-screen {
+    /* Le résultat screen est maintenant un conteneur plus flexible, 
+       on retire le display:flex ici pour utiliser le display:block par défaut */
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    /* La carte principale doit être large */
+    max-width: var(--max-width);
+    margin: 22px auto; 
+}
+#result-screen h2 {
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+}
+
+.score-summary {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.progress-bar-result {
+    width: 100%;
+    max-width: 600px;
+    height: 24px;
+    background: #e0f0ff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 10px auto 20px auto; /* Centrage */
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.progress-bar-result > span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    border-radius: 12px;
+    transition: width 1s ease-out;
+}
+
+.result-details {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px auto; /* Centrage */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.result-item {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #e3eaf4;
+    background: #f9fcff;
+    box-shadow: 0 4px 10px rgba(16,32,39,0.05);
+}
+
+.question-title-summary {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.answer-summary {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.explanation-box {
+    padding: 10px;
+    background: #eaf1fa;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.result-item.correct .explanation-box {
+    background: #eafff2; /* Vert très clair */
+}
+
+.result-item.wrong .explanation-box {
+    background: #fff0f0; /* Rouge très clair */
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.stats-row span {
+    font-weight: 600;
+}
+
+
+.result-item.correct {
+    border-left: 4px solid var(--success);
+    /* Utilise une couleur d'arrière-plan plus légère pour la carte entière */
+    background: #f7fffb; 
+}
+
+.result-item.wrong {
+    border-left: 4px solid var(--danger);
+    /* Utilise une couleur d'arrière-plan plus légère pour la carte entière */
+    background: #fff7f7; 
+}
+
+
+/* ------------------ RESPONSIVENESS ------------------ */
+@media (min-width:720px) {
+    /* En version desktop, les choix s'affichent en deux colonnes */
+    .choices {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    /* Calcul pour deux choix par ligne avec espacement de 10px */
+    .choice {
+        flex: 1 1 calc(50% - 5px);
+    }
+
+    .site-header h1 {
+        font-size: 1.6rem
+    }
+}
